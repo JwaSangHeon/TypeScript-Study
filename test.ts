@@ -51,3 +51,15 @@ const playerMaker = (name: string): Player => {
 
 const ccc = playerMaker("CCC");
 ccc.age = 12; // return값이 Player이기 때문에 no error
+
+// 정한 값을 수정할 수 없게, 즉 읽기전용으로 만들고 싶다면 type에 readonly를 붙여주면된다.
+const numbers: readonly number[] = [1, 2, 3, 4, 5];
+// numbers.push(2) : push가 불가능하다(readonly이기 때문)
+
+// Tuple은 array를 생성할 수 있게 하는데, 최소한의 길이를 가져야하고 특정위치에 특정값이 존재해야한다.
+const student: [string, number, boolean] = ["Heon", 25, false];
+
+// readonly도 사용가능하다.
+// const student: readonly[string, number, boolean] = ["Heon", 25, false];
+
+// type any를 쓰면 그냥 자바스크립트가 되어버림(모든 보호장치가 비활성화 된다). 권장하지 않음
