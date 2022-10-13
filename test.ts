@@ -63,3 +63,35 @@ const student: [string, number, boolean] = ["Heon", 25, false];
 // const student: readonly[string, number, boolean] = ["Heon", 25, false];
 
 // type any를 쓰면 그냥 자바스크립트가 되어버림(모든 보호장치가 비활성화 된다). 권장하지 않음
+
+// 변수의 타입을 미리 알지 못 할 때 unknown 타입을 사용한다.(만약 API의 응답을 받는데 그 응답의 타입을 모른다면..?)
+let a: unknown;
+
+if (typeof a === "number") {
+  let b = a + 1; // 해당 스코프에선 a의 type이 number가 되기 때문에 오류가 나지 않는다.
+}
+if (typeof a === "string") {
+  let b = a.toUpperCase(); // 해당 스코프에선 a의 type이 string이 되기 때문에 오류가 나지 않는다.
+}
+
+// void 타입은 '비어있는 것'을 의미한다. 즉 아무것도 return하지않는 함수의 return값은 void이다.
+function hello() {
+  console.log("hello");
+} // 아무것도 return하지 않는다.
+
+// never는 함수가 절대 return하지 않을 때 발생한다.
+function hello2(): never {
+  // return 'x'; // 오류가 난다.
+  throw new Error("xxx");
+} //return하지 않고 오류를 발생시키는 함수
+
+// 또한 never는 절대 일어날 수 없는 것을 의미하기도 한다.
+function hello3(name: string | number) {
+  if (typeof name === "string") {
+    name; // string
+  } else if (typeof name === "number") {
+    name; // number
+  } else {
+    name; // never
+  }
+}
