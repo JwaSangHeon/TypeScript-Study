@@ -100,3 +100,31 @@ function hello3(name: string | number) {
 // signatures type 제작 : 미리 만들어 놓음으로서 바르게 설계할 수 있다.
 type Add = (a: number, b: number) => number;
 const add: Add = (a, b) => a + b; // arguments의 타입을 지정하지 않아도 된다.
+
+// overloading(오버로딩) : 함수가 여러 개의 call signatures를 가지고 있을 때, 발생한다.
+type Config = {
+  path: string;
+  state: object;
+};
+type Push = {
+  (path: string): void;
+  (config: Config): void;
+};
+
+const push: Push = (config) => {
+  if (typeof config === "string") {
+    console.log(config);
+  } else {
+    console.log(config.path);
+  }
+};
+// 오버로딩은 파라미터의 갯수가 다를때도 발생한다.
+type Add2 = {
+  (a: number, b: number): number;
+  (a: number, b: number, c: number): number;
+};
+
+const add2: Add2 = (a, b, c?: number) => {
+  if (c) return a + b + c;
+  return a + b;
+};
