@@ -95,3 +95,8 @@ function hello3(name: string | number) {
     name; // never
   }
 }
+
+// call signatures : 마우스 호버시 보게 되는 것
+// signatures type 제작 : 미리 만들어 놓음으로서 바르게 설계할 수 있다.
+type Add = (a: number, b: number) => number;
+const add: Add = (a, b) => a + b; // arguments의 타입을 지정하지 않아도 된다.
