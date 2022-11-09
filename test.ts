@@ -291,3 +291,36 @@ class Playerin implements Userin {
     return `Hi,${name}. My name is ${this.getFullName()}`;
   }
 }
+
+// 전부 사용해서 localstorage 제작
+interface Sstorage<T> {
+  [key: string]: T;
+}
+
+class LocalStorage<T> {
+  private storage: Sstorage<T> = {};
+  set(key: string, value: T) {
+    if (!this.storage[key]) {
+      this.storage[key] = value;
+    } else {
+      alert("이미존재하는 값");
+    }
+  }
+  get(key: string): T {
+    return this.storage[key];
+  }
+  remove(key: string) {
+    delete this.storage[key];
+  }
+  clear() {
+    this.storage = {};
+  }
+}
+
+const stringLocalStorage = new LocalStorage<string>();
+stringLocalStorage.set("hello", "how are you?");
+stringLocalStorage.set("hello1", "how are you?");
+stringLocalStorage.set("hello2", "how are you?");
+stringLocalStorage.get("hello");
+stringLocalStorage.remove("hello2");
+stringLocalStorage.clear();
