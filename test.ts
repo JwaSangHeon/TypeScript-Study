@@ -158,3 +158,28 @@ const superasd = <T>(arr: T[]) => {
 };
 
 // TypeScript Class
+
+// private : 해당 class에서만 사용가능.
+// protected : 해당 class를 상속받은 자식도 사용가능.(외부 접근에 대해서는 보호)
+// public : 전부 사용가능.
+abstract class User {
+  constructor(
+    protected firstName: string,
+    protected lastName: string,
+    protected nickName: string
+  ) {}
+
+  abstract getNickName(): void; // 추상 메서드는 추상 클래스 안에서 구현할 수 있으며, call signature으로만 선언한다.(상속 받은 곳에서 구현)
+
+  getFullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+} // abstract class : 추상클래스로 자체로 인스턴스는 생성할 수 없고, 상속만 가능하다.
+
+class PlayerClass extends User {
+  getNickName() {
+    console.log(this.nickName);
+  }
+}
+
+const sh = new PlayerClass("Sang", "Heon", "Jwa");
