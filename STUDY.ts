@@ -75,7 +75,7 @@ if (typeof a === "string") {
 }
 
 // void 타입은 '비어있는 것'을 의미한다. 즉 아무것도 return하지않는 함수의 return값은 void이다.
-function hello() {
+function hello13() {
   console.log("hello");
 } // 아무것도 return하지 않는다.
 
@@ -318,9 +318,3 @@ class LocalStorage<T> {
 }
 
 const stringLocalStorage = new LocalStorage<string>();
-stringLocalStorage.set("hello", "how are you?");
-stringLocalStorage.set("hello1", "how are you?");
-stringLocalStorage.set("hello2", "how are you?");
-stringLocalStorage.get("hello");
-stringLocalStorage.remove("hello2");
-stringLocalStorage.clear();
