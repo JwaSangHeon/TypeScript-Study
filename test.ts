@@ -209,7 +209,7 @@ class Dictionary {
 
   static hello() {
     return "hello";
-  }
+  } // static 메서드는 인스턴스를 선언하지 않고 사용할 수 있다.
 }
 
 class Word {
@@ -226,3 +226,68 @@ dict.add(sushi);
 dict.def("kimchi");
 dict.def("sushi");
 dict.remove("kimchi");
+
+// 특정 값을 갖는 type
+type Team = "red" | "blue" | "yellow";
+
+// type ColorPlayer = {
+//   nickname: string;
+//   team: Team;
+// };
+
+//interface 이용 - type, interface 둘 다 오브젝트의 모양을 결정한다는 같은 역할을 한다. 하지만 interface는 타입스크립트에게 오브젝트의 모양을 설명해주는 하나의 목적으로만 사용가능하다.(상속도 가능하다)
+
+interface ColorPlayer {
+  nickname: string;
+  team: Team;
+}
+
+const newColorPlayer: ColorPlayer = {
+  nickname: "sh",
+  team: "red",
+};
+
+interface InterfaceUser {
+  name: string;
+}
+
+interface InterfacePlayer extends InterfaceUser {}
+
+const interfaceSh: InterfacePlayer = {
+  name: "sh",
+};
+
+// interface를 이용하면 js로 변환될 때, 바뀌지 않고 사라진다.(가볍다)
+
+// 추상 클래스 사용
+abstract class Userab {
+  constructor(protected firstName: string, protected lastName: string) {}
+  abstract getFullName(): string;
+  abstract sayHi(name: string): string;
+}
+
+class Playerab extends Userab {
+  getFullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+  sayHi(name: string) {
+    return `Hi,${name}. My name is ${this.getFullName()}`;
+  }
+}
+// interface 사용
+interface Userin {
+  firstName: string;
+  lastName: string;
+  getFullName(): string;
+  sayHi(name: string): string;
+}
+
+class Playerin implements Userin {
+  constructor(public firstName: string, public lastName: string) {} //public으로만 상속 가능
+  getFullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+  sayHi(name: string) {
+    return `Hi,${name}. My name is ${this.getFullName()}`;
+  }
+}
