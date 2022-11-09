@@ -183,3 +183,46 @@ class PlayerClass extends User {
 }
 
 const sh = new PlayerClass("Sang", "Heon", "Jwa");
+
+// word dictionary 만들기
+type Words = {
+  [key: string]: string;
+};
+
+class Dictionary {
+  private words: Words;
+  constructor() {
+    this.words = {};
+  }
+  add(word: Word) {
+    if (this.words[word.term] === undefined) {
+      this.words[word.term] = word.def;
+    }
+  }
+  def(term: string) {
+    return this.words[term];
+  }
+
+  remove(term: string) {
+    delete this.words[term];
+  }
+
+  static hello() {
+    return "hello";
+  }
+}
+
+class Word {
+  constructor(public readonly term: string, public readonly def: string) {} // readonly를 통해 밖에서 수정할 수 없게 한다.
+}
+
+const kimchi = new Word("kimchi", "한국음식");
+const sushi = new Word("sushi", "일본음식");
+
+const dict = new Dictionary();
+
+dict.add(kimchi);
+dict.add(sushi);
+dict.def("kimchi");
+dict.def("sushi");
+dict.remove("kimchi");
