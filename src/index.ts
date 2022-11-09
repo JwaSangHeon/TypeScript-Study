@@ -1,8 +1,4 @@
-const hello = () => "hi";
+import { init, exit } from "myPackage";
 
-class King {
-  constructor(private name: string) {}
-  static sayHello() {
-    console.log("hi");
-  }
-}
+init({ urls: "hi" });
+exit(1);
