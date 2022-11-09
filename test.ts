@@ -128,3 +128,33 @@ const add2: Add2 = (a, b, c?: number) => {
   if (c) return a + b + c;
   return a + b;
 };
+
+// Polymorphism : 다양한 형태에 대응한다.
+// generic 활용
+type SuperPrint = {
+  (arr: number[]): void;
+  (arr: boolean[]): void;
+  (arr: string[]): void;
+}; // arr를 받아서 console을 찍는 call signature, 다른 타입의 배열이 들어온다면 추가해야될까? NO
+
+// generic을 사용하면 된다.(return 값도 마찬가지)
+type SuperPrintGeneric = <T>(arr: T[]) => void; // 코드를 보고 T에 우리가 작성한 타입을 넣어준다.
+
+const superPrint: SuperPrintGeneric = (arr) => {
+  arr.forEach((i) => console.log(i));
+};
+
+superPrint([1, 2, 3, 4]);
+superPrint([true, false, true]);
+superPrint(["1", "2", "3", "4", true]);
+
+// generic 다르게 사용하기
+function superPrintFunc<T>(arr: T[]) {
+  return arr[0];
+} // 함수 선언때 사용
+
+const superasd = <T>(arr: T[]) => {
+  return arr[0];
+};
+
+// TypeScript Class
