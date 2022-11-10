@@ -5,6 +5,8 @@
     "target": "ES6", // JS바꿀 때, 사용할 버젼
     "lib": ["ES6", "DOM"], // 사용할 환경을 적어주면 자동완성을 제공한다.
     "strict": true,
-    "allowJs": true
+    "allowJs": false, //JS 파일을 허용한다.
+    "esModuleInterop": true, // import 모듈명으로 import 할 수 있다.
+    "module": "CommonJS" // module 시스템
   }
 }
